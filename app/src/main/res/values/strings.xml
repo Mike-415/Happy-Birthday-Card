@@ -1,5 +1,5 @@
 <resources>
     <string name="app_name">Happy Birthday Card</string>
-    <string name="happy_birthday_recipient">You</string>
-    <string name="happy_birthday_sender">Me</string>
+    <string name="happy_birthday_sender">From Me</string>
+    <string name="happy_birthday_message_text">Happy birthday You!!!</string>
 </resources>

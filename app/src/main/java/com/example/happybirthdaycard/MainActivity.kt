@@ -1,6 +1,9 @@
 package com.example.happybirthdaycard
 
+import android.content.res.Resources
 import android.os.Bundle
+import android.util.Log
+import android.widget.Toast
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.foundation.Image
@@ -13,12 +16,12 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.happybirthdaycard.ui.theme.HappyBirthdayCardTheme
-
-
+//import kotlinx.coroutines.NonCancellable.message
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -30,9 +33,11 @@ class MainActivity : ComponentActivity() {
                     modifier = Modifier.fillMaxSize()
                 ) {
                     BirthdayGreetingWithImage(
-                        getString(R.string.happy_birthday_recipient),
-                        getString(R.string.happy_birthday_sender))
+                        getString(R.string.happy_birthday_message_text),
+                        getString(R.string.happy_birthday_sender)
+                    )
                 }
+
             }
         }
     }
@@ -56,17 +61,17 @@ fun BirthdayGreetingWithImage(to: String, from: String) {
 @Composable
 fun BirthdayGreetingWithText(to:String, from:String){
     Column {
-        Text(text = "Happy birthday $to!!!!",
+        Text(text = to,
             fontSize = 36.sp,
             modifier = Modifier
                 .fillMaxWidth()
-                .wrapContentWidth()
+                .wrapContentWidth(Alignment.CenterHorizontally)
                 .padding(start = 16.dp, top = 16.dp))
-        Text(text = "From $from :-)",
+        Text(text = from,
             fontSize = 24.sp,
             modifier = Modifier
                 .fillMaxWidth()
-                .wrapContentWidth(Alignment.End)
+                .wrapContentWidth(Alignment.CenterHorizontally)
                 .padding(start = 16.dp, end = 16.dp))
     }
 }
@@ -75,6 +80,8 @@ fun BirthdayGreetingWithText(to:String, from:String){
 @Composable
 fun DefaultPreview() {
     HappyBirthdayCardTheme {
-        BirthdayGreetingWithImage("You", "Me")
+        BirthdayGreetingWithImage(
+            stringResource(R.string.happy_birthday_message_text),
+            stringResource(R.string.happy_birthday_sender))
     }
 }
